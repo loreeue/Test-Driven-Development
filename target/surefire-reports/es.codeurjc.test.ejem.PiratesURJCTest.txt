@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: es.codeurjc.test.ejem.PiratesURJCTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.348 sec <<< FAILURE! - in es.codeurjc.test.ejem.PiratesURJCTest
+test(String, String)[10]  Time elapsed: 0.014 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 3>
+	at es.codeurjc.test.ejem.PiratesURJCTest.test(PiratesURJCTest.java:56)
+
