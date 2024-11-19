@@ -1,6 +1,62 @@
-# AIS-Practica-3-2024
+## Test Driven Development (TDD) - PiratesURJC
 
-Nombre de los alumnos: Loreto Uzquiano Esteban.
+Este proyecto forma parte de la asignatura **Ampliación de Ingeniería del Software** del Grado en Ingeniería Informática. Su objetivo es implementar el juego **PiratesURJC** utilizando la metodología **Test Driven Development (TDD)**.
+
+### Descripción del Proyecto
+
+**PiratesURJC** es un juego para varios jugadores en el que cada participante juega una carta. Basándose en diferentes reglas, se determina un ganador. La práctica sigue estrictamente los pasos de TDD: escribir tests antes de implementar las funcionalidades, garantizar que fallan, implementar la solución mínima y finalmente refactorizar el código.
+
+### Reglas del Juego
+
+#### Ejemplos Simples (R1 - R3):
+- **R1:** Gana la carta con el valor más alto.
+- **R2:** Gana la carta más alta del color marcado por el jugador 1.
+- **R3:** Las cartas negras (N) tienen prioridad sobre el color marcado por el jugador 1.
+
+#### Ejemplos Avanzados (R4 - R19):
+- **R4:** La carta Sirena (SR) gana a todas las cartas numeradas.
+- **R8:** Si una carta Pirata (PR) y una Sirena aparecen juntas, gana el Pirata.
+- **R9:** La carta Skull King (SK) gana a todas las cartas del juego.
+- **R11:** La carta Kraken (KK) anula los efectos de las cartas figura.
+- **R13:** La Ballena Blanca (BB) introduce reglas específicas, como cambios en el valor de cartas.
+
+### Metodología TDD
+
+1. **Escribir un test:**
+   - Basándose en los ejemplos proporcionados (R1 - R19).
+2. **Comprobar que el test falla:**
+   - Esto asegura que la funcionalidad aún no está implementada.
+3. **Implementar la solución mínima:**
+   - Solo el código necesario para hacer que el test pase.
+4. **Refactorizar:**
+   - Mejorar el código eliminando duplicados y asegurando calidad.
+5. **Repetir:**
+   - Continuar con el siguiente ejemplo.
+
+### Requisitos
+
+- **Ciclos TDD:** Cada funcionalidad debe seguir estrictamente los pasos de TDD.
+- **Calidad del código:**
+  - Refactorización obligatoria.
+  - Código en inglés y bien formateado.
+- **Entrega:** Incluir una memoria que documente cada ciclo TDD.
+
+### Tecnologías Utilizadas
+
+- **Java** para la implementación.
+- **JUnit 5** para los tests.
+- **Maven** como herramienta de construcción.
+
+### Cómo Ejecutarlo
+
+1. **Ejecutar los tests:**
+   ```bash
+   mvn test
+   ```
+2. **Ver resultados:**
+   - Asegúrate de que todos los tests pasan tras cada refactorización.
+
+## Entrega
 
 ### Ejemplo 1
 
@@ -14,7 +70,7 @@ Nombre de los alumnos: Loreto Uzquiano Esteban.
 public void test1() {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play("1M 4M");
     // Then
     assertEquals("Gana jugador 2", result);
@@ -66,7 +122,7 @@ public String play(String round){
 public void test2() {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play("5M 2M");
     // Then
     assertEquals("Gana jugador 1", result);
@@ -130,7 +186,7 @@ public String play(String round){
 public void test3() {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play("1M 2M 4M");
     // Then
     assertEquals("Gana jugador 3", result);
@@ -145,7 +201,7 @@ org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana j
 
 **EJ3. Código mínimo para que el test pase**
 
-Si el número de jugadores es 2, se obtienen los dos enteros de las dos cartas y se comparan. En caso contrario, se obtiene el entero de la carta del tercer jugador y se compara con el resto. Dependiendo de cuál sea mayor, se devuelve un mensaje u otro. 
+Si el número de jugadores es 2, se obtienen los dos enteros de las dos cartas y se comparan. En caso contrario, se obtiene el entero de la carta del tercer jugador y se compara con el resto. Dependiendo de cuál sea mayor, se devuelve un mensaje u otro.
 
 ```java
 public String play(String round){
@@ -166,7 +222,7 @@ public String play(String round){
         }
         return "Gana jugador 3";
     }
-}  
+}
 ```
 
 **EJ3. Captura de que TODOS los test PASAN**
@@ -189,7 +245,7 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 public void test4() {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play("5M 2M 4M 7M");
     // Then
     assertEquals("Gana jugador 4", result);
@@ -204,7 +260,7 @@ org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana j
 
 **EJ4. Código mínimo para que el test pase**
 
-Si el número de jugadores es 2, se obtienen los dos enteros de las dos cartas y se comparan. Si el número de jugadores es 3, se obtienen los tres enteros de las tres cartas y se comparan. En caso contrario, se obtiene el entero de la carta del tercer y cuarto jugador y se comparan con el resto. Dependiendo de cuál sea mayor, se devuelve un mensaje u otro. 
+Si el número de jugadores es 2, se obtienen los dos enteros de las dos cartas y se comparan. Si el número de jugadores es 3, se obtienen los tres enteros de las tres cartas y se comparan. En caso contrario, se obtiene el entero de la carta del tercer y cuarto jugador y se comparan con el resto. Dependiendo de cuál sea mayor, se devuelve un mensaje u otro.
 
 ```java
 public String play(String round){
@@ -281,7 +337,7 @@ En la refactorización de los tests he sustituido todos los tests anteriores por
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
@@ -311,7 +367,7 @@ He refactorizado los tests en el ejemplo anterior.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
@@ -377,7 +433,7 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
@@ -390,7 +446,7 @@ public void test(String entrada, String salida) {
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 1> but was: <Gana jugador 3>
 ```
 
-**EJ6. Código mínimo para que el test pase** 
+**EJ6. Código mínimo para que el test pase**
 
 Este ejemplo lo he implementado de la siguiente forma. Primero he hecho un for que pone un valor de "0" a las posiciones del array de cartas que tengan distinta letra a la letra del primer jugador. Y, en el siguiente for, recorro el array sin las posiciones donde está el "0". Después, se hace lo mismo de antes, es decir, se compara y se devuelve el ganador.
 
@@ -414,10 +470,10 @@ public String play(String round) {
                 biggestCardValue = playerCardValue;
                 currentWinner = i;
             }
-        }  
+        }
     }
-    return "Gana jugador " + (currentWinner + 1); 
-}  
+    return "Gana jugador " + (currentWinner + 1);
+}
 ```
 
 **EJ6. Captura de que TODOS los test PASAN**
@@ -434,7 +490,7 @@ public String play(String round) {
     int biggestCardValue = 0;
     int currentWinner = -1;
     char firstLetter = cards[0].charAt(1);
-    
+
     for(int i = 0; i < cards.length; i++) {
         char playerCardLetter = cards[i].charAt(1);
         if (playerCardLetter == firstLetter) {
@@ -445,8 +501,8 @@ public String play(String round) {
             }
         }
     }
-    return "Gana jugador " + (currentWinner + 1); 
-} 
+    return "Gana jugador " + (currentWinner + 1);
+}
 ```
 
 **EJ6. Captura de que TODOS los tests PASAN tras la refactorización**
@@ -472,7 +528,7 @@ public String play(String round) {
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
@@ -485,7 +541,7 @@ public void test(String entrada, String salida) {
 En este ejemplo los tests pasan, ya que he refactorizado en el anterior ejemplo para hacer un código más general y eliminar uno de los bucles for.
 ```
 
-**EJ7. Código mínimo para que el test pase** 
+**EJ7. Código mínimo para que el test pase**
 
 No he añadido código a este ejemplo, ya que los tests pasan.
 
@@ -517,7 +573,7 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
@@ -530,7 +586,7 @@ public void test(String entrada, String salida) {
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 4>
 ```
 
-**EJ8. Código mínimo para que el test pase** 
+**EJ8. Código mínimo para que el test pase**
 
 Lo único que he añadido para que este test pase ha sido el if donde si el jugador 3 tiene una carta con la letra N, devuelve directamente ese jugador como ganador.
 
@@ -566,7 +622,7 @@ public String play(String round) {
 **EJ8. Refactorización**
 
 No he refactorizado. Por tanto, este paso y el siguiente los omito.
-  
+
 ### Ejemplo 9
 
 **INPUT y OUTPUT**: "2V 7V 4V 1N" - "Gana jugador 4"
@@ -588,20 +644,20 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
 }
 ```
 
-**EJ9. Mensaje del test añadido que NO PASA** 
+**EJ9. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana jugador 2>
 ```
 
-**EJ9. Código mínimo para que el test pase** 
+**EJ9. Código mínimo para que el test pase**
 
 Lo único que he añadido para que este test pase ha sido el if donde si el jugador 4 tiene una carta con la letra N, devuelve directamente ese jugador como ganador.
 
@@ -663,7 +719,7 @@ No he refactorizado. Por tanto, este paso y el siguiente los omitimos.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
     assertEquals(salida, result);
@@ -676,7 +732,7 @@ public void test(String entrada, String salida) {
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 3>
 ```
 
-**EJ10. Código mínimo para que el test pase** 
+**EJ10. Código mínimo para que el test pase**
 
 Lo único que he añadido para que este test pase ha sido el if donde si el jugador 2 tiene una carta con la letra N, devuelve directamente ese jugador como ganador.
 
@@ -809,7 +865,7 @@ public String play(String round) {
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
      assertEquals(salida, result);
@@ -822,7 +878,7 @@ public void test(String entrada, String salida) {
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana jugador 3>
 ```
 
-**EJ11. Código mínimo para que el test pase** 
+**EJ11. Código mínimo para que el test pase**
 
 Aquello que he añadido para que el código pase es un if antes del anterior for. Solo entra en este if si hay 4 jugadores. En ese caso, mira si tiene la carta "SR" en la posición 3.
 
@@ -895,7 +951,7 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
      assertEquals(salida, result);
@@ -908,7 +964,7 @@ public void test(String entrada, String salida) {
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 4>
 ```
 
-**EJ12. Código mínimo para que el test pase** 
+**EJ12. Código mínimo para que el test pase**
 
 Para que este test pase, he añadido un if dentro del primer if. Solo entra en este if si hay 4 jugadores. En ese caso, mira si tiene la carta "SR" en la posición 3 o en la posisión 1. Esta última opción forma parte de este último caso.
 
@@ -1024,20 +1080,20 @@ public String play(String round) {
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
      assertEquals(salida, result);
 }
 ```
 
-**EJ13. Mensaje del test añadido que NO PASA** 
+**EJ13. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 2>
 ```
 
-**EJ13. Código mínimo para que el test pase** 
+**EJ13. Código mínimo para que el test pase**
 
 Lo que he hecho para que este test pase ha sido añadir una nueva condición en uno de los ifs. Para que actualice el valor ganador si hay dos jugadores que tienen la carta SR o valor 11 (el valor que he puesto).
 
@@ -1110,20 +1166,20 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
      assertEquals(salida, result);
 }
 ```
 
-**EJ14. Mensaje del test añadido que NO PASA** 
+**EJ14. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 3>
 ```
 
-**EJ14. Código mínimo para que el test pase** 
+**EJ14. Código mínimo para que el test pase**
 
 Para que este test pase, he añadido un if antes del for. Entra a este if si hay 4 jugadores y si se encuentra la carta PR en la posición 1 del array de cartas. En ese caso, se devuelve el mensaje esperado.
 
@@ -1165,7 +1221,7 @@ public String play(String round) {
         }
     }
     return "Gana jugador " + (currentWinner + 1);
-} 
+}
 ```
 
 **EJ14. Captura de que TODOS los test PASAN**
@@ -1241,20 +1297,20 @@ public String play(String round) {
 public void test(String entrada, String salida) {
     // Given
     PiratesURJC game = new PiratesURJC();
-    // When 
+    // When
     String result = game.play(entrada);
     // Then
      assertEquals(salida, result);
 }
 ```
 
-**EJ15. Mensaje del test añadido que NO PASA** 
+**EJ15. Mensaje del test añadido que NO PASA**
 
 ```log
 En este caso los tests pasan, ya que hemos tratado de igual forma la carta SR y la carta PR. Y, antes, hemos añadido la funcionalidad para que si hay varias cartas SR gane la última. Este ejemplo nos dice que ocurre lo mismo pero con la carta PR.
 ```
 
-**EJ15. Código mínimo para que el test pase** 
+**EJ15. Código mínimo para que el test pase**
 
 No he añadido código mínimo, ya que la funcionalidad ya está cubierta.
 
@@ -1327,13 +1383,13 @@ A partir de este ejemplo, en los tests solo voy a añadir la línea que cambia e
 "9V PR 4V SR, Gana jugador 2"
 ```
 
-**EJ16. Mensaje del test añadido que NO PASA** 
+**EJ16. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 4>
 ```
 
-**EJ16. Código mínimo para que el test pase** 
+**EJ16. Código mínimo para que el test pase**
 
 Para que este test pase, he añadido un if. Entra en este if si hay 4 jugadores. Además, dentro hay otro if, al cual entra si el jugador 2 tiene la carta PR y el jugador 4 tiene la carta SR.
 
@@ -1407,13 +1463,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "SR SR PR SR, Gana jugador 3"
 ```
 
-**EJ16B. Mensaje del test añadido que NO PASA** 
+**EJ16B. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 4>
 ```
 
-**EJ16B. Código mínimo para que el test pase** 
+**EJ16B. Código mínimo para que el test pase**
 
 En el primer if que he creado en el anterior ejemplo, he añadido un for que recorre las cartas de todos los jugadores. Si encuentra un jugador con la carta SR y otro con la carta PR, devuelve como ganador el jugador que tiene la carta PR.
 
@@ -1487,7 +1543,7 @@ private boolean isSpecialCard(String card) {
 ![Pasa](capturas/Ejemplo16B.1.png "Pasa")
 
 **EJ16B. Refactorización**
- 
+
 En esta refactorización he introducido una mayor distinción entre las cartas especiales "SR" y "PR", asignando valores diferentes a cada una, es decir, asignando a la carta "PR" un valor mayor, para que gane a la carta "SR".
 
 ```java
@@ -1560,13 +1616,13 @@ private boolean isSpecialCard(String card) {
 "7N 8A 1V SK, Gana jugador 4"
 ```
 
-**EJ17. Mensaje del test añadido que NO PASA** 
+**EJ17. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana jugador 1>
 ```
 
-**EJ17. Código mínimo para que el test pase** 
+**EJ17. Código mínimo para que el test pase**
 
 He creado un if. Entra en este if si hay 4 jugadores. En ese caso, si el jugador 4 tiene la carta SK, devuelve a ese jugador como ganador.
 
@@ -1650,13 +1706,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "2V PR SK 1N, Gana jugador 3"
 ```
 
-**EJ18. Mensaje del test añadido que NO PASA** 
+**EJ18. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 2>
 ```
 
-**EJ18. Código mínimo para que el test pase** 
+**EJ18. Código mínimo para que el test pase**
 
 En el if que he creado en el ejemplo anterior, he creado dentro otro if, donde entra si el jugador 3 tiene la carta SK. En este caso, devuelve a ese jugador como ganador.
 
@@ -1743,13 +1799,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "1N SK 4V SR, Gana jugador 2"
 ```
 
-**EJ19. Mensaje del test añadido que NO PASA** 
+**EJ19. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 4>
 ```
 
-**EJ19. Código mínimo para que el test pase** 
+**EJ19. Código mínimo para que el test pase**
 
 En el if que he creado en el ejemplo anterior, he creado dentro otro if, donde entra si el jugador 2 tiene la carta SK. En este caso, devuelve a ese jugador como ganador.
 
@@ -1974,13 +2030,13 @@ private String getSpecialValue(String card) {
 "PR SK SR SR, Gana jugador 3"
 ```
 
-**EJ20. Mensaje del test añadido que NO PASA** 
+**EJ20. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 2>
 ```
 
-**EJ20. Código mínimo para que el test pase** 
+**EJ20. Código mínimo para que el test pase**
 
 El código mínimo que he añadido para que el test pase ha sido un if antes del for. En el que directamente, si el jugador 2 tiene la carta SK y el jugador 3 tiene SR, se devuelve como ganador el jugador 3.
 
@@ -2130,7 +2186,7 @@ private String getSpecialValue(String card) {
 
 **EJ20. Refactorización 2**
 
-En esta refactorización he cambiado los arrays SPECIAL_CARDS y SPECIAL_VALUES a conjuntos. Esto hace que el método isSpecialCard se simplifique al utilizar el método "contains" de los conjuntos. Además, he creado un nuevo método privado llamado convertCardValue que se encarga de convertir los valores de las cartas según las condiciones establecidas. 
+En esta refactorización he cambiado los arrays SPECIAL_CARDS y SPECIAL_VALUES a conjuntos. Esto hace que el método isSpecialCard se simplifique al utilizar el método "contains" de los conjuntos. Además, he creado un nuevo método privado llamado convertCardValue que se encarga de convertir los valores de las cartas según las condiciones establecidas.
 
 ```java
 private static final Set<String> SPECIAL_CARDS = Set.of("SR", "PR", "SK");
@@ -2214,13 +2270,13 @@ private String convertCardValue(String card) {
 "1V KK SR, Gana jugador 1"
 ```
 
-**EJ21. Mensaje del test añadido que NO PASA** 
+**EJ21. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 1> but was: <Gana jugador 3>
 ```
 
-**EJ21. Código mínimo para que el test pase** 
+**EJ21. Código mínimo para que el test pase**
 
 El código mínimo que he añadido para que el test pase ha sido un if al inicio del for. Si se encuentra la carta KK en alguno de los jugadores, se devuelve el jugador 1 como ganador.
 
@@ -2313,13 +2369,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "5A PR KK, Gana jugador 1"
 ```
 
-**EJ22. Mensaje del test añadido que NO PASA** 
+**EJ22. Mensaje del test añadido que NO PASA**
 
 ```log
 Este test pasa, ya que el anterior ejemplo lo he implementado para que devolviese como ganador el jugador 1 si hubiese algún jugador con la carta KK. Y en este ejemplo coincide que el jugador ganador es el 1, igual que en el anterior ejemplo.
 ```
 
-**EJ22. Código mínimo para que el test pase** 
+**EJ22. Código mínimo para que el test pase**
 
 No he añadido código a este ejemplo, ya que los tests pasan.
 
@@ -2341,13 +2397,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "7M SK KK, Gana jugador 1"
 ```
 
-**EJ23. Mensaje del test añadido que NO PASA** 
+**EJ23. Mensaje del test añadido que NO PASA**
 
 ```log
 Este test pasa, ya que el ejemplo 21 lo he implementado para que devolviese como ganador el jugador 1 si hubiese algún jugador con la carta KK. Y en este ejemplo coincide que el jugador ganador es el 1, igual que ese mismo ejemplo.
 ```
 
-**EJ23. Código mínimo para que el test pase** 
+**EJ23. Código mínimo para que el test pase**
 
 No he añadido código a este ejemplo, ya que los tests pasan.
 
@@ -2369,13 +2425,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "KK SK 5A SR, Gana jugador 3"
 ```
 
-**EJ24. Mensaje del test añadido que NO PASA** 
+**EJ24. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 1>
 ```
 
-**EJ24. Código mínimo para que el test pase** 
+**EJ24. Código mínimo para que el test pase**
 
 Primero, he añadido una variable booleana que localiza si hay algún jugador con la carta KK. En el primer for se establece esa variable a true si se encuentra esa carta. Después, hay un if con dos for. En el primero se establecen todas las cartas especiales a "00", y en el segundo se sobreescribe la letra de la primera carta.
 
@@ -2701,13 +2757,13 @@ private String convertFiguresTo00(String card) {
 "PR KK SR PR, Gana jugador 2"
 ```
 
-**EJ25. Mensaje del test añadido que NO PASA** 
+**EJ25. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 0>
 ```
 
-**EJ25. Código mínimo para que el test pase** 
+**EJ25. Código mínimo para que el test pase**
 
 Primero, he almacenado en una variable global el jugador que tiene la carta KK. Luego, al final de la función principal, si hay algún jugador con KK y el currentWinner es igual a -1 (esto significa que el resto de cartas son figuras), se devuelve como ganador el jugador de la carta KK.
 
@@ -3075,13 +3131,13 @@ private String convertCardValue(String card, boolean foundKK, boolean allSpecial
 "1A 1V BB 2V, Gana jugador 4"
 ```
 
-**EJ26. Mensaje del test añadido que NO PASA** 
+**EJ26. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana jugador 1>
 ```
 
-**EJ26. Código mínimo para que el test pase** 
+**EJ26. Código mínimo para que el test pase**
 
 He hecho un nuevo for en el que se busca la carta BB. Si se encuentra, se devuelve el jugador 4 como ganador.
 
@@ -3211,13 +3267,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "1A 8V BB 2N, Gana jugador 2"
 ```
 
-**EJ27. Mensaje del test añadido que NO PASA** 
+**EJ27. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 4>
 ```
 
-**EJ27. Código mínimo para que el test pase** 
+**EJ27. Código mínimo para que el test pase**
 
 He añadido la carta especial BB y una función que devuelve true si hay algún jugador con esa carta.
 
@@ -3473,13 +3529,13 @@ private String convertCardValue(String card, boolean foundKK, boolean allSpecial
 "2A 1V BB 2N, Gana jugador 3"
 ```
 
-**EJ28. Mensaje del test añadido que NO PASA** 
+**EJ28. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 1>
 ```
 
-**EJ28. Código mínimo para que el test pase** 
+**EJ28. Código mínimo para que el test pase**
 
 Lo que hago para que este test pase es crear un nuevo método que recibe el array de cartas y el valor mayor de entre todas las cartas. Devuelve true si hay alguna otra carta (que no sea esa que hemos encontrado antes) del mismo valor, es decir, si hay empate. En caso contrario, devuelve false. Posteriormente, en la función principal, si hay empate devolvemos como ganador al jugador que tiene la carta BB.
 
@@ -3776,13 +3832,13 @@ private String convertCardValue(String card, boolean foundKK, boolean allSpecial
 "1A 8N BB SR, Gana jugador 2"
 ```
 
-**EJ29. Mensaje del test añadido que NO PASA** 
+**EJ29. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 4>
 ```
 
-**EJ29. Código mínimo para que el test pase** 
+**EJ29. Código mínimo para que el test pase**
 
 Lo único que he hecho para pasar este test ha sido añadir un if en la función convertCardValue, es decir, si hay BB y se encuentra la carta SR, se pone en su lugar un 7. He puesto un 7 por la siguiente razón: para que no gane SR tenemos que darle un valor numérico, ya que al estar la carta BB, no se considera el color para determinar el ganador. Además, como el ejemplo dice que debe ganar el jugador de la carta 8N, le damos a la carta SR el valor de 7, es decir un valor menor que 8.
 
@@ -3942,13 +3998,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "2N BB PR 9V, Gana jugador 4"
 ```
 
-**EJ30. Mensaje del test añadido que NO PASA** 
+**EJ30. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana jugador 3>
 ```
 
-**EJ30. Código mínimo para que el test pase** 
+**EJ30. Código mínimo para que el test pase**
 
 Lo único que he hecho para pasar este test ha sido añadir un if en la función convertCardValue, es decir, si hay BB y se encuentra la carta PR, se pone en su lugar un 8. He puesto un 8 por la siguiente razón: para que no gane PR tenemos que darle un valor numérico, ya que al estar la carta BB, no se considera el color para determinar el ganador. Además, como el ejemplo dice que debe ganar el jugador de la carta 9V, le damos a la carta PR el valor de 8, es decir un valor menor que 9.
 
@@ -4111,13 +4167,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "1N SK BB, Gana jugador 1"
 ```
 
-**EJ31. Mensaje del test añadido que NO PASA** 
+**EJ31. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 1> but was: <Gana jugador 2>
 ```
 
-**EJ31. Código mínimo para que el test pase** 
+**EJ31. Código mínimo para que el test pase**
 
 Lo único que he hecho para pasar este test ha sido añadir un if en la función convertCardValue, es decir, si hay BB y se encuentra la carta SK, se pone en su lugar un 0. He puesto un 0 por la siguiente razón: para que no gane SK tenemos que darle un valor numérico, ya que al estar la carta BB, no se considera el color para determinar el ganador. Además, como el ejemplo dice que debe ganar el jugador de la carta 1N, le damos a la carta SK el valor de 0 es decir un valor menor que 1.
 
@@ -4419,13 +4475,13 @@ private String convertCardValue(String card, boolean foundKK, boolean allSpecial
 "SR BB KK 8V 1N SK PR, Gana jugador 5"
 ```
 
-**EJ32. Mensaje del test añadido que NO PASA** 
+**EJ32. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 5> but was: <Gana jugador 2>
 ```
 
-**EJ32. Código mínimo para que el test pase** 
+**EJ32. Código mínimo para que el test pase**
 
 Lo único que he añadido para que pase el test ha sido un if que localiza si hay BB y luego KK. En ese caso, pone la BB a "00", el booleano de foundBB lo pone a false y el jugador que tiene la carta BB se vuelve a poner a -1.
 
@@ -4584,13 +4640,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "6A KK BB SR, Gana jugador 4"
 ```
 
-**EJ33. Mensaje del test añadido que NO PASA** 
+**EJ33. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 4> but was: <Gana jugador 1>
 ```
 
-**EJ33. Código mínimo para que el test pase** 
+**EJ33. Código mínimo para que el test pase**
 
 Lo único que he añadido para que pase el test ha sido un if que localiza si hay KK y luego BB. En ese caso, pone el booleano de foundKK a false.
 
@@ -4752,13 +4808,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "KK SK BB, Gana jugador 2"
 ```
 
-**EJ34. Mensaje del test añadido que NO PASA** 
+**EJ34. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 2> but was: <Gana jugador 1>
 ```
 
-**EJ34. Código mínimo para que el test pase** 
+**EJ34. Código mínimo para que el test pase**
 
 Lo que he hecho para que pase este test ha sido otro for donde recorro todas las cartas y me guardo los índices de las cartas KK y BB. Luego, en un if, compruebo que la carta KK está antes que la carta BB. Y, en ese caso, pongo la carta KK a -1. He escogido el valor -1 ya que tiene que ser un valor menor a 0, ya que SK se transforma en un 0 y el ejemplo dice que gana la carta "SK". Por tanto, el nuevo valor del "KK" debe ser menor al valor de "SK".
 
@@ -4933,13 +4989,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "PR KK BB 7M, Gana jugador 1"
 ```
 
-**EJ35. Mensaje del test añadido que NO PASA** 
+**EJ35. Mensaje del test añadido que NO PASA**
 
 ```log
 Este test pasa, ya que al estar el KK antes que BB, se pone la carta KK a -1, luego PR se pondría a 8 (ya que hay BB), y por tanto, 8 > 7, así que ganaría el jugador de la carta PR, es decir, el jugador 1.
 ```
 
-**EJ35. Código mínimo para que el test pase** 
+**EJ35. Código mínimo para que el test pase**
 
 No he implementado código mínimo, ya que el test pasa.
 
@@ -5254,13 +5310,13 @@ private String convertCardValue(String card, boolean foundKK, boolean allSpecial
 "SR BB 8V KK 1N SK PR, Gana jugador 5"
 ```
 
-**EJ EXTRA 1. Mensaje del test añadido que NO PASA** 
+**EJ EXTRA 1. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 5> but was: <Gana jugador 3>
 ```
 
-**EJ EXTRA 1. Código mínimo para que el test pase** 
+**EJ EXTRA 1. Código mínimo para que el test pase**
 
 Lo que he hecho para pasar este test ha sido cambiar el if que controlaba que la carta BB estuviese antes que al carta KK. En lugar de comparar que ambas cartas estuviesen seguidas, comparo sus índices para controlar que una está después que la otra, y no inmediatamente después.
 
@@ -5418,13 +5474,13 @@ No he refactorizado. Por tanto, este paso y el siguiente los omito.
 "7M 1N 4N 8V, Gana jugador 3"
 ```
 
-**EJ EXTRA 2. Mensaje del test añadido que NO PASA** 
+**EJ EXTRA 2. Mensaje del test añadido que NO PASA**
 
 ```log
 org.opentest4j.AssertionFailedError: expected: <Gana jugador 3> but was: <Gana jugador 2>
 ```
 
-**EJ EXTRA 2. Código mínimo para que el test pase** 
+**EJ EXTRA 2. Código mínimo para que el test pase**
 
 Lo que he hecho para que pase este test ha sido eliminar el if que comparaba la carta con "10", y, al encontrar una carta con letra N, ya no se transforma esa carta al número 10.
 
